@@ -1,0 +1,6 @@
+snscrape
+pandas
+vaderSentiment
+nltk
+python-dotenv
+fire
