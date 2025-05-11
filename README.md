@@ -1,47 +1,102 @@
-# Solana Token Sniper
+Solana Token Sniper
 
-A Python-based Twitter scraper that snipes early hype around Solana meme tokens—so you can catch 10×–100× pumps before they happen.
+A Twitter scraper and hype‑score analyzer for Solana‑specific slang phrases. Uses snscrape, pandas, and VADER sentiment analysis to track on‑chain memes and airdrop chatter.
 
-## 🔭 Features
-- Scrapes tweets matching degen key phrases (e.g. “just aped”, “low cap gem”, “next bonk”)
-- Filters English‑language tweets since a configurable date
-- Cleans and tokenizes tweet text
-- Extracts $TOKEN mentions via regex
-- Runs VADER sentiment analysis
-- Calculates a **hype score**:
-  ```python
-  hype_score = (likes * 0.6 + retweets * 1.2) * sentiment_score
-  ```
-- Aggregates and ranks tokens by total hype
-- Outputs results to CSV and prints top candidates
+Features
 
-## 🛠️ Installation
+Scrape recent tweets containing a list of predefined Solana‑slang phrases
 
-1. Clone the repo  
-   ```bash
-   git clone https://github.com/hootriot08/solana-token-sniper.git
-   cd solana-token-sniper
-   ```
+Clean tweet text and extract meaningful tokens
 
-2. Install dependencies  
-   ```bash
-   pip install -r requirements.txt
-   ```
+Compute a custom hype score weighted by likes, retweets, and sentiment
 
-3. Download NLTK data  
-   ```bash
-   python -m nltk.downloader punkt stopwords
-   ```
+Export results to CSV with UTF‑8 BOM for maximum compatibility
 
-## 🚀 Usage
+Configure look‑back window and tweet limit per phrase via CLI flags
 
-```bash
+Robust error handling and detailed logging
+
+Prerequisites
+
+Python 3.8 or higher
+
+pip package manager
+
+Installation
+
+Clone the repository
+
+git clone https://github.com/hootriot08/solana-token-sniper.git
+cd solana-token-sniper
+
+Install dependencies
+
+pip install -r requirements.txt
+
+Download NLTK data (required for tokenization)
+
+python -m nltk.downloader punkt stopwords
+
+Usage
+
+Command‑line
+
+Run the scraper with your desired settings:
+
+python3 scripts/scraper.py \
+  --days-back 1 \
+  --max-tweets 50 \
+  --output output.csv
+
+--days-back: Number of days in the past to include (default: 1)
+
+--max-tweets: Max tweets to fetch per phrase (default: 50)
+
+--output: Path to the output CSV (default: output.csv)
+
+Example Runner
+
+Use the provided example script for a quick demonstration:
+
+chmod +x examples/run_example.sh
 bash examples/run_example.sh
-```
 
-Or directly:
+This example scrapes the last day of tweets, up to 100 per phrase, and writes the results to example.csv.
 
-```bash
-python scripts/scraper.py   --days-back 1   --max-tweets 100   --output solana_hype.csv
-```
+Project Structure
 
+solana-token-sniper/
+├── examples/                 # Example runner scripts
+│   └── run_example.sh
+├── scripts/                  # Main scraper CLI
+│   └── scraper.py
+├── utils/                    # Shared utilities
+│   ├── __init__.py           # Package initializer
+│   ├── text_cleaner.py       # Text cleaning functions
+│   └── sentiment.py          # SentimentAnalyzer wrapper
+├── README.md                 # Project documentation (this file)
+└── requirements.txt          # Python dependencies
+
+Testing & Linting (Optional)
+
+Install dev tools
+
+pip install pytest flake8
+
+Run tests
+
+pytest
+
+Check style
+
+flake8 .
+
+Contributing
+
+Contributions are welcome! Please open issues or pull requests for bug fixes and new features. For major changes, open an issue first to discuss the proposal.
+
+License
+
+Add your preferred open source license here.
+
+JIAA
