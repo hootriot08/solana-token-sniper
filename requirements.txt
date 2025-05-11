@@ -1,14 +1,6 @@
-# Core scraping & data
-snscrape
-pandas
-
-# CLI
-fire
-
-# Your text‑cleaning & sentiment modules (if you publish separately)
-# e.g. utils-text-cleaner
-# utils-sentiment
-
-# (Optional tooling)
-pytest
-flake8
+snscrape>=0.4.3.20220130
+pandas>=1.3.0
+vaderSentiment>=3.3.2
+nltk>=3.5
+python-dotenv>=0.19.0
+fire>=0.4.0
