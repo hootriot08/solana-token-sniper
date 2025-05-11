@@ -3,6 +3,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 # last note update: 05-10-25 @ 7:45 PM CST
+
+# creates a set of fluff english words (e.g. a, and, this, that)
 _stop = set(stopwords.words('english'))
 
 def clean_text(text: str) -> str:
