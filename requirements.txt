@@ -1,6 +1,14 @@
+# Core scraping & data
 snscrape
 pandas
-vaderSentiment
-nltk
-python-dotenv
+
+# CLI
 fire
+
+# Your text‑cleaning & sentiment modules (if you publish separately)
+# e.g. utils-text-cleaner
+# utils-sentiment
+
+# (Optional tooling)
+pytest
+flake8
