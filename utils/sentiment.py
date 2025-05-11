@@ -1,20 +1,17 @@
-import re
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+# last notes done 05-10-25 7:37 PM CST
+class SentimentAnalyzer:
+    def __init__(self):
+        # Analyzer object
+        self._vd = SentimentIntensityAnalyzer() 
 
-# last note update: 05-10-25 @ 7:45 PM CST
-_stop = set(stopwords.words('english'))
-
-def clean_text(text: str) -> str:
-    # remove URLs, Twitter handles, and entire hashtags
-    text = re.sub(r'http\S+|@\w+|#\w*', '', text)
-    # allow only letters, digits, dollar-signs, and spaces
-    text = re.sub(r'[^A-Za-z0-9\$ ]+', '', text)
-    # lowercase → tokenize → drop stopwords → rejoin
-    tokens = word_tokenize(text.lower())
-    filtered = [w for w in tokens if w not in _stop]
-    return ' '.join(filtered)
-
-def extract_tokens(text: str) -> list:
-    # normalize to uppercase, then pull out $TICKER-style tokens
-    return re.findall(r'\$\w+', text.upper())
+    def sentiment(self, text: str) -> float:
+        # returns neg (negative), neu (neutral), pos (positive), compound (composite) values
+        return self._vd.polarity_scores(text)['compound'] 
+        
+     # returns a float; parameters are parts of a tweet and associated type
+    def hype_score(self, likes: int, retweets: int, text: str) -> float:
+        # compound score from earlier
+        s = self.sentiment(text) 
+        # formula
+        return (likes * 0.6 + retweets * 1.2) * s 
