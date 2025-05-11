@@ -19,7 +19,7 @@ A Python-based Twitter scraper that snipes early hype around Solana meme tokensâ
 
 1. Clone the repo  
    ```bash
-   git clone https://github.com/YOUR_USERNAME/solana-token-sniper.git
+   git clone https://github.com/hootriot08/solana-token-sniper.git
    cd solana-token-sniper
    ```
 
